@@ -1,8 +1,8 @@
 pub mod io;
 mod mods;
-mod day03;
+mod day04;
 
 fn main() {
-    day03::solve();
+    day04::solve();
 }
 
