@@ -1,7 +1,9 @@
 use crate::io;
 
-pub fn solve() {
-    let v: Vec<String> = io::readfile("day04\\input.txt").expect("File read failed.");
+pub fn solve(test: bool) {
+    let filename = if test {"day04\\test.txt"} else {"day04\\input.txt"};
+
+    let v: Vec<String> = io::readfile(filename).expect("File read failed.");
 
     let mut flags: u8 = 0;
     let mut flags2: u8 = 0;

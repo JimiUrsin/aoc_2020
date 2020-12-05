@@ -1,8 +1,10 @@
 use crate::io;
 use std::time::{Instant};
 
-pub fn solve() {
-    let v: Vec<String> = io::readfile("day03\\input.txt").expect("File read failed.");
+pub fn solve(test: bool) {   
+    let filename = if test {"day03\\test.txt"} else {"day03\\input.txt"};
+
+    let v: Vec<String> = io::readfile(filename).expect("File read failed.");
     let start1 = Instant::now();
     
     let ans = slide(&v, 3, 1);

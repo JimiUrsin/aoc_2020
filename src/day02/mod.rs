@@ -1,7 +1,9 @@
 use crate::io;
 
-pub fn solve() {
-    let v: Vec<String> = io::readfile("day02\\input.txt").expect("File read failed.");
+pub fn solve(test: bool) { 
+    let filename = if test {"day02\\test.txt"} else {"day02\\input.txt"};
+    
+    let v: Vec<String> = io::readfile(filename).expect("File read failed.");
 
     // Answer to first puzzle
     let mut sum = 0;
