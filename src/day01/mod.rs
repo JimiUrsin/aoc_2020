@@ -37,9 +37,9 @@ pub fn solve(test: bool) {
 
     // Naive cubic method
     let t2 = Instant::now();
-    'outerestest:for i in 0..v.len() - 2 {
-        for j in 1..v.len() - 1 {
-            for k in 2..v.len() {
+    'outerestest:for i in 0 .. (v.len() - 2) {
+        for j in (i + 1) .. (v.len() - 1) {
+            for k in (j + 1) .. v.len() {
                 if v[i] + v[j] + v[k] == num {
                     println!("Naive method found a match, {}, {} and {}", v[i], v[j], v[k]);
                     println!("The product of these numbers is {}", v[i] as i64 * v[j] as i64 * v[k] as i64);
@@ -62,7 +62,7 @@ pub fn solve(test: bool) {
         }
     }
 
-    'outerer:for i in 0..v.len() {
+    'outerer:for i in 0 .. v.len() {
         for t in &tuples {
             if v[i] + t.2 == num {                
                 println!("Vectorized method found a match for part two, {}, {} and {}", v[i], t.0, t.1);
