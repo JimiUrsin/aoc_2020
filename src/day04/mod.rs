@@ -1,10 +1,12 @@
 use crate::io;
 use std::time::Instant;
 
-pub fn solve(test: bool) {
+pub fn solve(test: bool) -> u128{
     let filename = if test {"day04\\test.txt"} else {"day04\\input.txt"};
 
     let v: Vec<String> = io::readfile(filename).expect("File read failed.");
+    
+    println!("--- Day 04 ---");
 
     let time1 = Instant::now();
 
@@ -85,9 +87,12 @@ pub fn solve(test: bool) {
 
     }
 
-    println!("Answer to part one: {}", sum);
-    println!("Answer to part two: {}", sum2);
-    println!("Time elapsed: {} µs", time1.elapsed().as_micros());
+    println!("Solution to part one: {}", sum);
+    println!("Solution to part two: {}", sum2);
+
+    let timetaken = time1.elapsed().as_micros();
+    println!("Time elapsed: {} µs", timetaken);
+    return timetaken;
 }
 
 fn num_valid(s_num: &str, lower: u16, upper: u16) -> bool {

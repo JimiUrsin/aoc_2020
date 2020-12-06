@@ -2,10 +2,12 @@ use crate::io;
 use std::collections::HashSet;
 use std::time::Instant;
 
-pub fn solve(test: bool) {
+pub fn solve(test: bool) -> u128 {
     let filename = if test {"day01\\test.txt"} else {"day01\\input.txt"};
 
     let lines: Vec<String> = io::readfile(filename).expect("How did reading the file fail, what are you doing?");
+
+    println!("--- Day 01 ---");
 
     let t1 = Instant::now();
     let mut s: HashSet<i32> = HashSet::new();
@@ -19,8 +21,7 @@ pub fn solve(test: bool) {
 
         // Part one
         if !found && s.contains(&(num - li)) {
-            println!("Found a match for part one, {} and {}", num - li, li);
-            println!("The product of these numbers is {}", (num - li) * li);
+            println!("Solution to part one: {}", (num - li) * li);
             found = true;
         } else {
             s.insert(li);
@@ -30,11 +31,9 @@ pub fn solve(test: bool) {
         v.push(li);
     }
 
-    println!("Time elapsed: {} ms", t1.elapsed().as_millis());
-    println!();
-
     // Part two
 
+    /*
     // Naive cubic method
     let t2 = Instant::now();
     'outerestest:for i in 0 .. (v.len() - 2) {
@@ -74,8 +73,9 @@ pub fn solve(test: bool) {
     println!("Time elapsed: {} ms", t3.elapsed().as_millis());
     println!();
 
+    */
+
     // Sorting method, this just dumped on the other two
-    let t4 = Instant::now();
     v.sort();
     let len = v.len() - 1;
     'o3:for (i, n) in v.iter().enumerate() {
@@ -85,9 +85,8 @@ pub fn solve(test: bool) {
         while j != k {
             let sum = n + v[j] + v[k];
 
-            if sum == num {                
-                println!("Sorting method found a match for part two, {}, {} and {}", n, v[j], v[k]);
-                println!("The product of these numbers is {}", n * v[j] * v[k]);
+            if sum == num {
+                println!("Solution to part two: {}", n * v[j] * v[k]);
                 break 'o3;
             }
             if sum > num {
@@ -98,6 +97,7 @@ pub fn solve(test: bool) {
         }
     }
     
-    println!("Time elapsed: {} µs <-- microseconds, if you didn't notice", t4.elapsed().as_micros());
-    
+    let timetaken = t1.elapsed().as_micros();
+    println!("Time elapsed: {} µs", timetaken);
+    return timetaken;
 }

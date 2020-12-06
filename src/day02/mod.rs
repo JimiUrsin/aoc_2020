@@ -1,9 +1,14 @@
 use crate::io;
+use std::time::Instant;
 
-pub fn solve(test: bool) { 
+pub fn solve(test: bool) -> u128 { 
     let filename = if test {"day02\\test.txt"} else {"day02\\input.txt"};
     
     let v: Vec<String> = io::readfile(filename).expect("File read failed.");
+
+    println!("--- Day 02 ---");
+
+    let time1 = Instant::now();
 
     // Answer to first puzzle
     let mut sum = 0;
@@ -42,8 +47,12 @@ pub fn solve(test: bool) {
             sum2 += 1;
         }
     }
-    println!("Sum of valid passwords according to the first policy is {}", sum);
-    println!("Sum of valid passwords according to the second policy is {}", sum2);
+    println!("Solution to part one: {}", sum);
+    println!("Solution to part two: {}", sum2);
+
+    let timetaken = time1.elapsed().as_micros();
+    println!("Time elapsed: {} µs", timetaken);
+    return timetaken;
 }
 
 fn valid(lower: u8, upper: u8, c: char, line: &str) -> bool {

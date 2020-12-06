@@ -2,10 +2,12 @@ use crate::io;
 use std::collections::HashSet;
 use std::time::Instant;
 
-pub fn solve(test: bool) {
+pub fn solve(test: bool) -> u128 {
     let filename = if test {"day05\\test.txt"} else {"day05\\input.txt"};
 
     let v: Vec<String> = io::readfile(filename).expect("File read failed.");
+    
+    println!("--- Day 05 ---");
 
     let time1 = Instant::now();
 
@@ -51,9 +53,6 @@ pub fn solve(test: bool) {
         set.insert((row, seat));
     }
     println!("Solution to part one: {}", max_id);
-    println!("Time elapsed: {} µs\n", time1.elapsed().as_micros());
-
-    let time2 = Instant::now();
 
     // Go through all rows and seats and check if they're missing
     
@@ -74,5 +73,7 @@ pub fn solve(test: bool) {
         }
     }
     
-    println!("Time elapsed: {} µs\n", time2.elapsed().as_micros());
+    let timetaken = time1.elapsed().as_micros();
+    println!("Time elapsed: {} µs", timetaken);
+    return timetaken;
 }
