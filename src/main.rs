@@ -5,6 +5,7 @@ mod day03;
 mod day04;
 mod day05;
 mod day06;
+mod day07;
 
 fn main() {
     let day = 0;
@@ -18,6 +19,7 @@ fn main() {
         4 => {day04::solve(test);},
         5 => {day05::solve(test);},
         6 => {day06::solve(test);},
+        7 => {day07::solve(test);},
         _ => {}
     }
 }
@@ -37,8 +39,10 @@ fn runall() -> u128 {
     println!();
     timetaken += day06::solve(false);
     println!();
+    timetaken += day07::solve(false);
+    println!();
     
-    println!("Time taken to find all solutions was {} ms", (timetaken as f64) / 1000.0);
+    println!("Time taken to find all solutions was {:.2} ms", (timetaken as f64) / 1000.0);
 
     return timetaken;
 }
